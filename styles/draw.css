@@ -1,0 +1,21 @@
+body{
+	background-color: #C2B59B;
+}
+
+.container-main {
+	margin-top: 25px;
+	background-color: gray;
+}
+
+.container-canvas {
+	margin: 0 auto;
+	width: 1000px;
+}
+
+canvas {
+	background-color: white;
+}
+
+.toolbar{
+	background-color: blue;
+}
