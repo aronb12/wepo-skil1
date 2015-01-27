@@ -19,3 +19,19 @@ canvas {
 .toolbar{
 	background-color: blue;
 }
+
+#strokeColor{
+    width: 60px;
+    height: 35px;
+    margin-bottom: 5px;
+}
+
+#fillColor{
+    width: 60px;
+    height: 35px;
+    margin-bottom: 5px;
+}
+
+#label{
+    width: 85px;
+}
