@@ -28,8 +28,8 @@ function getMousePos(canvas, evt) {
 var mouseMoveListener = function (evt) {
 	"use strict";
 	
-	var mousePos = getMousePos(canvas, evt);
-	var message = "Mouse position " + mousePos.x + ", " + mousePos.y;
+	var mousePos = getMousePos(canvas, evt),
+		message = "Mouse position " + mousePos.x + ", " + mousePos.y;
 	writeMessage(canvas, message);
 };
 
