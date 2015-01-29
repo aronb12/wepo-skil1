@@ -48,4 +48,10 @@ canvas {
 #redoContainer{
     padding-left: 0px;
 }
-    
+
+#loadButton{
+    cursor: pointer;
+}
+#saveButton{
+    cursor: pointer;
+}
