@@ -51,6 +51,11 @@ $("#saveButton").click(function () {
     console.log("saveButton");
 });
 
+$("#loadButton").click(function () {
+    "use strict";
+    console.log("loadButton");
+});
+
 $("#undoButton").click(function () {
     "use strict";
     console.log("undoButton");
@@ -67,13 +72,13 @@ $("#lineWidthButton").click(function () {
     console.log("LineWidth: ", lineWidth);
 });
 
-$("#strokeColor").click(function () {
+$("#strokeColor").on("change", function () {
     "use strict";
     var color = $("#strokeColor").val();
     console.log("strokeColor", color);
 });
 
-$("#fillColor").click(function () {
+$("#fillColor").on("change", function () {
     "use strict";
     var color = $("#fillColor").val();
     console.log("fillColor", color);

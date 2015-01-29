@@ -8,6 +8,26 @@
 	</head>
 	
 	<body>
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" 
+                      data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Paint 2</a>
+            </div>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a id="saveButton" role="button" href="#">Save</a></li>
+                <li><a id="loadButton" role="button" href="#">Load</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
 		<div class="container">
 			<div class="row">
 				<div class="container-main">
@@ -22,9 +42,9 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                              <li><a id="rectFilled" href="#">Filled</a></li>
-                              <li><a id="rectBorder" href="#">Border</a></li>
-                              <li><a id="rectBoth" href="#">Both</a></li>
+                              <li><a id="rectFilled" role="button" href="#">Filled</a></li>
+                              <li><a id="rectBorder" role="button" href="#">Border</a></li>
+                              <li><a id="rectBoth" role="button" href="#">Both</a></li>
                             </ul>
                         </div>
                         <div class="btn-group" role="group">
@@ -34,16 +54,13 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
-                              <li><a id="circFilled" href="#">Filled</a></li>
-                              <li><a id="circBorder" href="#">Border</a></li>
-                              <li><a id="circBoth" href="#">Both</a></li>
+                              <li><a id="circFilled" role="button" href="#">Filled</a></li>
+                              <li><a id="circBorder" role="button" href="#">Border</a></li>
+                              <li><a id="circBoth" role="button" href="#">Both</a></li>
                             </ul>
                         </div>
                         <div class="btn-group" role="group">
                             <button id="penButton" type="button" class="btn btn-default">Pen</button>
-                        </div>
-                        <div class="btn-group" role="group">
-                            <button id="saveButton" type="button" class="btn btn-default">Save</button>
                         </div>
                         <div class="btn-group" role="group">
                             <button id="undoButton" type="button" class="btn btn-default">Undo</button>
