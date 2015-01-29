@@ -3,18 +3,95 @@ var canvas = document.getElementById("canvas");
 var selection = {
 	
 };
+/**
+Function button click handling
+**/
+$("#lineButton").click(function () {
+    "use strict";
+    console.log("lineButton");
+});
 
-function writeMessage(canvas, message) {
-	"use strict";
-	
-	var context = canvas.getContext("2d");
-	
-	context.clearRect(0, 0, canvas.width, canvas.height);
-	context.font = "18pt Calibri";
-	context.fillStyle = "black";
-	context.fillText(message, 10, 25);
-}
+$("#rectFilled").click(function () {
+    "use strict";
+    console.log("rectFilled");
+});
 
+$("#rectBorder").click(function () {
+    "use strict";
+    console.log("rectBorder");
+});
+
+$("#rectBoth").click(function () {
+    "use strict";
+    console.log("rectBoth");
+});
+
+$("#circFilled").click(function () {
+    "use strict";
+    console.log("circFilled");
+});
+
+$("#circBorder").click(function () {
+    "use strict";
+    console.log("circBorder");
+});
+
+$("#circBoth").click(function () {
+    "use strict";
+    console.log("circBoth");
+});
+
+$("#penButton").click(function () {
+    "use strict";
+    console.log("penButton");
+});
+
+$("#saveButton").click(function () {
+    "use strict";
+    console.log("saveButton");
+});
+
+$("#undoButton").click(function () {
+    "use strict";
+    console.log("undoButton");
+});
+
+$("#redoButton").click(function () {
+    "use strict";
+    console.log("redoButton");
+});
+
+$("#lineWidthButton").click(function () {
+    "use strict";
+    var lineWidth = $("#lineWidthButton").val();
+    console.log("LineWidth: ", lineWidth);
+});
+
+$("#strokeColor").click(function () {
+    "use strict";
+    var color = $("#strokeColor").val();
+    console.log("strokeColor", color);
+});
+
+$("#fillColor").click(function () {
+    "use strict";
+    var color = $("#fillColor").val();
+    console.log("fillColor", color);
+});
+
+$("#fontButton").click(function () {
+    "use strict";
+    var font = $("#fontButton").val();
+    console.log("Font: ", font);
+});
+
+/**
+Function for returning mouse position
+
+@param {object} canvas* The canvas context to be observing
+@param {event} event that is logged
+@return {number, number} x and y postition
+**/
 function getMousePos(canvas, evt) {
 	"use strict";
 	
@@ -25,12 +102,15 @@ function getMousePos(canvas, evt) {
 	};
 }
 
+/**
+Function that listens for mouse movement
+
+@param {event}  mousemove
+**/
 var mouseMoveListener = function (evt) {
 	"use strict";
 	
-	var mousePos = getMousePos(canvas, evt),
-		message = "Mouse position " + mousePos.x + ", " + mousePos.y;
-	writeMessage(canvas, message);
+	var mousePos = getMousePos(canvas, evt);
 };
 
 canvas.addEventListener("mousedown", function (evt) {
