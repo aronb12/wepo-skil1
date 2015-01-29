@@ -1,37 +1,6 @@
-body{
-	background-color: #C2B59B;
+#undoButton{
+    
 }
+#redoButton{
 
-.container-main {
-	margin-top: 25px;
-	background-color: gray;
-}
-
-.container-canvas {
-	margin: 0 auto;
-	width: 1000px;
-}
-
-canvas {
-	background-color: white;
-}
-
-.toolbar{
-	background-color: blue;
-}
-
-#strokeColor{
-    width: 60px;
-    height: 35px;
-    margin-bottom: 5px;
-}
-
-#fillColor{
-    width: 60px;
-    height: 35px;
-    margin-bottom: 5px;
-}
-
-#label{
-    width: 85px;
 }
