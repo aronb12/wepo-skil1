@@ -106,7 +106,7 @@ Function for returning mouse position
 
 @param {object} canvas* The canvas context to be observing
 @param {event} event that is logged
-@return {number, number} x and y postition
+@return {object} Object containing the x and y coordinates
 **/
 function getMousePos(canvas, evt) {
 	"use strict";
