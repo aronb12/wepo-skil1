@@ -56,6 +56,12 @@ $("#loadButton").click(function () {
     console.log("loadButton");
 });
 
+$("#textButton").click(function () {
+    "use strict";
+    var font = $("#fontButton").val();
+    console.log("TextButton. font: ", font);
+});
+
 $("#undoButton").click(function () {
     "use strict";
     console.log("undoButton");
@@ -66,7 +72,7 @@ $("#redoButton").click(function () {
     console.log("redoButton");
 });
 
-$("#lineWidthButton").click(function () {
+$("#lineWidthButton").on("change", function () {
     "use strict";
     var lineWidth = $("#lineWidthButton").val();
     console.log("LineWidth: ", lineWidth);
@@ -84,12 +90,17 @@ $("#fillColor").on("change", function () {
     console.log("fillColor", color);
 });
 
-$("#fontButton").click(function () {
+$("#fontButton").on("change", function () {
     "use strict";
     var font = $("#fontButton").val();
     console.log("Font: ", font);
 });
 
+$("#fontSizeButton").on("change", function () {
+    "use strict";
+    var fontSize = $("#fontSizeButton").val();
+    console.log("Font size: ", fontSize);
+});
 /**
 Function for returning mouse position
 
