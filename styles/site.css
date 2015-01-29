@@ -39,3 +39,13 @@ canvas {
 .dropdown-menu{
     cursor: pointer;
 }
+
+#undoContainer{
+    width: 60px;
+    padding-right: 0px;
+}
+
+#redoContainer{
+    padding-left: 0px;
+}
+    
