@@ -26,7 +26,7 @@ var Rectangle = Shape.extend({
 	
 	@return {number} The rectangle height as a number
 	**/
-	getHeight: function(){
+	getHeight: function () {
 		"use strict";
 		
 		return this.p2.y - this.p1.y;
@@ -37,10 +37,24 @@ var Rectangle = Shape.extend({
 	
 	@return {number} The rectangle width as a number
 	**/
-	getWidth: function(){
+	getWidth: function () {
 		"use strict";
 		
 		return this.p2.x - this.p1.x;
+	},
+	
+	/**
+	Function that acts as an event listener when the mouse is moved on the canvas
+	**/
+	mouseMove: function (canvas, context, p) {
+		"use strict";
+		
+		this.p2 = p;
+		this.width = this.getWidth();
+		this.height = this.getHeight();
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		
+		this.draw(context);
 	},
 	
 	/**
@@ -48,12 +62,12 @@ var Rectangle = Shape.extend({
 	
 	@param {object} canvas* The canvas context to be drawn on
 	**/
-	draw: function (canvas) {
+	draw: function (context) {
 		"use strict";
 		
-		this.base(canvas);
-		canvas.rect(this.p1.x, this.p1.y, this.width, this.height);
-		this.drawFinish(canvas);
+		this.base(context);
+		context.rect(this.p1.x, this.p1.y, this.width, this.height);
+		this.drawFinish(context);
 	},
 	
 	/**
@@ -66,11 +80,11 @@ var Rectangle = Shape.extend({
 		
 		@param {object} canvas* The canvas context to be drawn on
 		**/
-		function (canvas) {
+		function (context) {
 			"use strict";
 			
-			canvas.fillStyle = this.fillColor;
-			canvas.fill();
+			context.fillStyle = this.fillColor;
+			context.fill();
 		},
 		
 		/**
@@ -78,12 +92,12 @@ var Rectangle = Shape.extend({
 		
 		@param {object} canvas* The canvas context to be drawn on
 		**/
-		function (canvas) {
+		function (context) {
 			"use strict";
 			
-			canvas.lineWidth = this.lineWidth;
-			canvas.strokeStyle = this.strokeColor;
-			canvas.stroke();
+			context.lineWidth = this.lineWidth;
+			context.strokeStyle = this.strokeColor;
+			context.stroke();
 		},
 		
 		/**
@@ -91,14 +105,14 @@ var Rectangle = Shape.extend({
 		
 		@param {object} canvas* The canvas context to be drawn on
 		**/
-		function (canvas) {
+		function (context) {
 			"use strict";
 			
-			this.drawFinish = this.drawSelections[0];
-			this.drawFinish(canvas);
-			
-			this.drawFinish = this.drawSelections[1];
-			this.drawFinish(canvas);
+			context.fillStyle = this.fillColor;
+			context.fill();
+			context.lineWidth = this.lineWidth;
+			context.strokeStyle = this.strokeColor;
+			context.stroke();
 		}
 	],
 	

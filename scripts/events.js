@@ -1,142 +1,132 @@
-var canvas = document.getElementById("canvas");
-
-var selection = {
-	
-};
-/**
-Function button click handling
-**/
-$("#lineButton").click(function () {
-    "use strict";
-    console.log("lineButton");
-});
-
-$("#rectFilled").click(function () {
-    "use strict";
-    console.log("rectFilled");
-});
-
-$("#rectBorder").click(function () {
-    "use strict";
-    console.log("rectBorder");
-});
-
-$("#rectBoth").click(function () {
-    "use strict";
-    console.log("rectBoth");
-});
-
-$("#circFilled").click(function () {
-    "use strict";
-    console.log("circFilled");
-});
-
-$("#circBorder").click(function () {
-    "use strict";
-    console.log("circBorder");
-});
-
-$("#circBoth").click(function () {
-    "use strict";
-    console.log("circBoth");
-});
-
-$("#penButton").click(function () {
-    "use strict";
-    console.log("penButton");
-});
-
-$("#saveButton").click(function () {
-    "use strict";
-    console.log("saveButton");
-});
-
-$("#loadButton").click(function () {
-    "use strict";
-    console.log("loadButton");
-});
-
-$("#textButton").click(function () {
-    "use strict";
-    var font = $("#fontButton").val();
-    console.log("TextButton. font: ", font);
-});
-
-$("#undoButton").click(function () {
-    "use strict";
-    console.log("undoButton");
-});
-
-$("#redoButton").click(function () {
-    "use strict";
-    console.log("redoButton");
-});
-
-$("#lineWidthButton").on("change", function () {
-    "use strict";
-    var lineWidth = $("#lineWidthButton").val();
-    console.log("LineWidth: ", lineWidth);
-});
-
-$("#strokeColor").on("change", function () {
-    "use strict";
-    var color = $("#strokeColor").val();
-    console.log("strokeColor", color);
-});
-
-$("#fillColor").on("change", function () {
-    "use strict";
-    var color = $("#fillColor").val();
-    console.log("fillColor", color);
-});
-
-$("#fontButton").on("change", function () {
-    "use strict";
-    var font = $("#fontButton").val();
-    console.log("Font: ", font);
-});
-
-$("#fontSizeButton").on("change", function () {
-    "use strict";
-    var fontSize = $("#fontSizeButton").val();
-    console.log("Font size: ", fontSize);
-});
-/**
-Function for returning mouse position
-
-@param {object} canvas* The canvas context to be observing
-@param {event} event that is logged
-@return {object} Object containing the x and y coordinates
-**/
-function getMousePos(canvas, evt) {
+var events = function (canvas, selection, history) {
 	"use strict";
-	
-	var rect = canvas.getBoundingClientRect();
-	return {
-		x: evt.clientX - rect.left,
-		y: evt.clientY - rect.top
+	var context = canvas.getContext("2d");
+	/**
+	Function button click handling
+	**/
+	$("#lineButton").click(function () {
+		console.log("lineButton");
+	});
+
+	// Select a filled rectangle
+	$("#rectFilled").click(function () {
+		selection.selectOperation(1);
+	});
+
+	// Select an outlined rectangle
+	$("#rectBorder").click(function () {
+		selection.selectOperation(2);
+	});
+
+	// Select a filled rectangle with border
+	$("#rectBoth").click(function () {
+		selection.selectOperation(3);
+	});
+
+	// Select a filled circle
+	$("#circFilled").click(function () {
+		selection.selectOperation(4);
+	});
+
+	// Select an outlined circle
+	$("#circBorder").click(function () {
+		selection.selectOperation(5);
+	});
+
+	// Select a filled circle with border
+	$("#circBoth").click(function () {
+		selection.selectOperation(6);
+	});
+
+	$("#penButton").click(function () {
+		console.log("penButton");
+	});
+
+	$("#saveButton").click(function () {
+		console.log("saveButton");
+	});
+
+	$("#loadButton").click(function () {
+		console.log("loadButton");
+	});
+
+	$("#textButton").click(function () {
+		var font = $("#fontButton").val();
+		console.log("TextButton. font: ", font);
+	});
+
+	$("#undoButton").click(function () {
+		console.log("undoButton");
+	});
+
+	$("#redoButton").click(function () {
+		console.log("redoButton");
+	});
+
+	$("#lineWidth").on("change", function () {
+		selection.setLineWidth($("#lineWidth").val());
+//		var lineWidth = $("#lineWidth").val();
+//		console.log("LineWidth: ", lineWidth);
+	});
+
+	$("#strokeColor").on("change", function () {
+		selection.setLineColor($("#strokeColor").val());
+//		var color = $("#strokeColor").val();
+//		console.log("strokeColor", color);
+	});
+
+	$("#fillColor").on("change", function () {
+		selection.setFillColor($("#fillColor").val());
+//		var color = $("#fillColor").val();
+//		console.log("fillColor", color);
+	});
+
+	$("#font").on("change", function () {
+		var font = $("#font").val();
+		console.log("Font: ", font);
+	});
+
+	$("#fontSize").on("change", function () {
+		var fontSize = $("#fontSize").val();
+		console.log("Font size: ", fontSize);
+	});
+
+	/**
+	Function for returning mouse position
+
+	@param {object} canvas* The canvas context to be observing
+	@param {event} event that is logged
+	@return {number, number} x and y postition
+	**/
+	function getMousePos(evt) {
+
+		var rect = canvas.getBoundingClientRect();
+		return new Point(evt.clientX - rect.left, evt.clientY - rect.top);
+	}
+
+	/**
+	Function that listens for mouse movement
+
+	@param {event}  mousemove
+	**/
+	var mouseMoveListener = function (evt) {
+		var mousePos = getMousePos(evt);
+		
+		selection.item.mouseMove(canvas, context, mousePos);
 	};
-}
 
-/**
-Function that listens for mouse movement
+	canvas.addEventListener("mousedown", function (evt) {
+		selection.createShape();
+		selection.item.p1 = getMousePos(evt);
+		selection.item.p2 = getMousePos(evt);
 
-@param {event}  mousemove
-**/
-var mouseMoveListener = function (evt) {
-	"use strict";
-	
-	var mousePos = getMousePos(canvas, evt);
+		canvas.addEventListener("mousemove", mouseMoveListener, false);
+	}, false);
+
+	canvas.addEventListener("mouseup", function (evt) {
+		canvas.removeEventListener("mousemove", mouseMoveListener, false);
+		history.addShape(selection.item);
+		history.drawHistory(canvas, context);
+		selection.createShape();
+	}, false);
 };
-
-canvas.addEventListener("mousedown", function (evt) {
-	"use strict";
-	
-	canvas.addEventListener("mousemove", mouseMoveListener, false);
-}, false);
-
-canvas.addEventListener("mouseup", function (evt) {
-	"use strict";
-	
-	canvas.removeEventListener("mousemove", mouseMoveListener, false);
-}, false);

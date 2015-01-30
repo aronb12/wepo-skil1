@@ -70,6 +70,20 @@ var Circle = Shape.extend({
 	},
 	
 	/**
+	Function that acts as an event listener when the mouse is moved on the canvas
+	**/
+	mouseMove: function (canvas, context, p) {
+		"use strict";
+		
+		this.p2 = p;
+		this.center = this.getCenter();
+		this.radius = this.getRadius();
+		context.clearRect(0, 0, canvas.width, canvas.height);
+		
+		this.draw(context);
+	},
+	
+	/**
 	Function for drawing on canvas
 	
 	@param {object} canvas* The canvas context to be drawn on
@@ -120,11 +134,12 @@ var Circle = Shape.extend({
 		function (canvas) {
 			"use strict";
 			
-			this.drawFinish = this.drawSelections[0];
-			this.drawFinish(canvas);
+			canvas.fillStyle = this.fillColor;
+			canvas.fill();
 			
-			this.drawFinish = this.drawSelections[1];
-			this.drawFinish(canvas);
+			canvas.lineWidth = this.lineWidth;
+			canvas.strokeStyle = this.strokeColor;
+			canvas.stroke();
 		}
 	],
 	
