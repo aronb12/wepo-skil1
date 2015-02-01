@@ -1,8 +1,8 @@
-var canvas = document.getElementById("canvas");
-
-var context = canvas.getContext("2d");
-
-
+function getDrawing(id, history, canvas) {
+	"use strict";
+	
+	
+	
 //$.ajax({
 //	type: "POST",
 //	contentType: "application/json; charset=utf-8",
@@ -20,3 +20,5 @@ var context = canvas.getContext("2d");
 //		console.log(err);
 //	}
 //});
+
+}
