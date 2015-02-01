@@ -168,23 +168,23 @@ var param = {
 //	}
 //});
 
-//$.ajax({
-//	type: "POST",
-//	contentType: "application/json; charset=utf-8",
-//	url: "http://whiteboard.apphb.com/Home/GetList",
-//	data: {"user": "arona12", "template": true},
-//	dataType: "jsonp",
-//	crossDomain: true,
-//	success: function (data) {
-//		console.log("SUCCESS!!");
-//		console.log(data);
-//	},
-//	error: function (xhr, err) {
-//		console.log("ERROR!!");
-//		console.log(xhr);
-//		console.log(err);
-//	}
-//});
+$.ajax({
+	type: "POST",
+	contentType: "application/json; charset=utf-8",
+	url: "http://whiteboard.apphb.com/Home/GetList",
+	data: {"user": "arona12", "template": false},
+	dataType: "jsonp",
+	crossDomain: true,
+	success: function (data) {
+		console.log("SUCCESS!!");
+		console.log(data);
+	},
+	error: function (xhr, err) {
+		console.log("ERROR!!");
+		console.log(xhr);
+		console.log(err);
+	}
+});
 
 //$.ajax({
 //	type: "POST",
@@ -204,10 +204,10 @@ var param = {
 //	}
 //});
 
-var i = getList("arona12");
-i.done(function () {
-	console.log(i);
-});
+//var i = getList("arona12");
+//i.done(function () {
+//	console.log(i);
+//});
 //console.log(i.success())
 //saveToApi([new Line(new Point(0, 0),
 //					new Point(100, 100),
