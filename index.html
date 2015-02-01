@@ -38,9 +38,9 @@
 			<div class="save-menu hidden">
 				<fieldset>
 					<legend>Save</legend>
-					<label for="name">Username</label>
+					<label for="save-user">Username</label>
 					 <br />
-					<input type="text" id="username"/>
+					<input type="text" id="save-user"/>
 					 <br />
 					<label for="drawing-name">Drawing</label>
 					 <br />
@@ -51,18 +51,13 @@
 			</div>
             <div class="load-menu hidden">
 				<fieldset>
-					<legend>load</legend>
-                    <label for="name">Username</label>
+					<legend>Load</legend>
+                    <label for="username-load">Username</label>
 					 <br />
-					<input type="text" id="username"/>
+					<input type="text" id="username-load"/>
 					 <br />
-                    <input type="button" id="userLoad" value="Load user" class="btn btn-default"/>
-                    <select multiple class="form-control">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
+                    <input type="button" id="load-drawings" value="Submit" class="btn btn-default"/>
+                    <select id="drawings" multiple class="form-control">
                     </select>
                     <input type="button" id="load-submit" value="load" class="btn btn-default"/>
 				</fieldset>

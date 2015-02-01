@@ -70,7 +70,7 @@ var events = function (canvas, shadowCanvas, creation, selection, history) {
 	});
 	
 	$("#save-submit").click(function () {
-		saveToApi(history.history, $("#username").val(),  $("#drawing-name").val());
+		saveToApi(history.history, $("#save-user").val(),  $("#drawing-name").val());
 		$(".save-menu").toggleClass("hidden");
 	});
 
@@ -78,6 +78,15 @@ var events = function (canvas, shadowCanvas, creation, selection, history) {
 		console.log("loadButton");
         $(".save-menu").addClass("hidden");
         $(".load-menu").toggleClass("hidden");
+	});
+	
+	$("#load-drawings").click(function () {
+		getList($("#username-load").val());
+	});
+	
+	$("#load-submit").click(function () {
+		var id = parseInt($("#drawings").val()[0]);
+		console.log(id);
 	});
 
 	$("#undoButton").click(function () {
