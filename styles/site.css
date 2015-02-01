@@ -22,6 +22,10 @@ canvas {
 	background-color: blue;
 }
 
+#bottomBtn{
+    margin-top: 6px;
+}
+
 #strokeColor{
     width: 60px;
     height: 35px;
@@ -58,6 +62,10 @@ canvas {
     cursor: pointer;
 }
 
+.list-group{
+    cursor: pointer;
+}
+
 .container-canvas{
 	background-color: white;
 
@@ -88,4 +96,52 @@ canvas {
 	border-bottom-left-radius: 10px;
 	
 	background-color: gray;
+    
+    /* Chrome, Safari, Opera */
+    -webkit-animation: slidein 1s;
+    animation: slidein 1s;
+}
+
+.load-menu{
+	position: fixed;
+	top: 150px;
+	right: 0px;
+	
+	padding-right: 10px;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	
+    box-shadow: 0px 0px 100px #000000;
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	
+	background-color: gray;
+    
+    /* Chrome, Safari, Opera */
+    -webkit-animation: slidein 1s;
+    animation: slidein 1s;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes slidein {
+    from {right:-250px;}
+    to {right: 0px;}
+}
+
+/* Standard syntax */
+@keyframes slidein {
+    from {right:-250px;}
+    to {right: 0px;}
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes slideout {
+    from {right: 0px;}
+    to {right: -250px;}
+}
+
+/* Standard syntax */
+@keyframes slideout {
+    from {right: 0px;}
+    to {right: -250px;}
 }

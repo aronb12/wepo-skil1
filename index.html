@@ -1,5 +1,4 @@
 <!DOCTYPE HTML>
-
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="styles/bootstrap.min.css" />
@@ -48,6 +47,24 @@
 					<input type="text" id="drawing-name"/>
 					<br />
 					<input type="button" id="save-submit" value="Save" class="btn btn-default"/>
+				</fieldset>
+			</div>
+            <div class="load-menu hidden">
+				<fieldset>
+					<legend>load</legend>
+                    <label for="name">Username</label>
+					 <br />
+					<input type="text" id="username"/>
+					 <br />
+                    <input type="button" id="userLoad" value="Load user" class="btn btn-default"/>
+                    <select multiple class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                    <input type="button" id="load-submit" value="load" class="btn btn-default"/>
 				</fieldset>
 			</div>
 			
@@ -110,7 +127,7 @@
 								<p>Your browser does not support canvas</p>
 							</canvas>
 						</div>
-                        <div class="row">
+                        <div class="row" id="bottomBtn">
                             <div class="col-md-2">
                                 <label>Line Width</label>
                                 <select id="lineWidth" class="form-control">

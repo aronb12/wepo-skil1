@@ -64,17 +64,20 @@ var events = function (canvas, shadowCanvas, creation, selection, history) {
 	});
 
 	$("#saveButton").click(function () {
+        $(".load-menu").addClass("hidden");
 		$(".save-menu").toggleClass("hidden");
 		console.log("saveButton");
 	});
 	
 	$("#save-submit").click(function () {
-		saveToApi(history.history, $("#username").val(), $("#drawing-name").val());
+		saveToApi(history.history, $("#username").val(),  $("#drawing-name").val());
 		$(".save-menu").toggleClass("hidden");
 	});
 
 	$("#loadButton").click(function () {
 		console.log("loadButton");
+        $(".save-menu").addClass("hidden");
+        $(".load-menu").toggleClass("hidden");
 	});
 
 	$("#undoButton").click(function () {
