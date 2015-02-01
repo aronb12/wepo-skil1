@@ -17,7 +17,9 @@ canvas {
 	background-color: white;
 }
 */
-
+label{
+    text-decoration-color: white;
+}
 .toolbar{
 	background-color: blue;
 }
@@ -102,6 +104,11 @@ canvas {
     animation: slidein 1s;
 }
 
+#save-submit{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
 .load-menu{
 	position: fixed;
 	top: 150px;
@@ -120,6 +127,16 @@ canvas {
     /* Chrome, Safari, Opera */
     -webkit-animation: slidein 1s;
     animation: slidein 1s;
+}
+
+#user-load{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+#load-submit{
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 /* Chrome, Safari, Opera */
