@@ -1,10 +1,7 @@
 function getList(username) {
 	"use strict";
-//	console.log(username);
-//	$("#drawings").append("<option id='1'>" + username + "</option>");
 	
-	
-	return $.ajax({
+	$.ajax({
 		type: "POST",
 		contentType: "application/json; charset=utf-8",
 		url: "http://whiteboard.apphb.com/Home/GetList",
@@ -19,14 +16,6 @@ function getList(username) {
 									  data[i].WhiteboardTitle +
 									  "</option>");
 			}
-//			var i;
-//			for (i = 0; i < data.length; i += 1) {
-//				result.append({
-//					id: i,
-//					history: JSON.parse(data.WhiteboardContents)
-//				});
-//			}
-//			return result;
 		},
 		error: function (xhr, err) {
 			console.log("ERROR!!");
