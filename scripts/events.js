@@ -1,53 +1,56 @@
-var events = function (canvas, selection, history) {
+var events = function (canvas, shadowCanvas, creation, selection, history) {
 	"use strict";
-	var context = canvas.getContext("2d");
+	
+	var op = {},
+		context = canvas.getContext("2d"),
+		shadowContext = shadowCanvas.getContext("2d");
 	/**
 	Function button click handling
 	**/
 	$("#lineButton").click(function () {
-		console.log("lineButton");
+		op = creation;
+		op.selectOperation(0);
 	});
 
 	// Select a filled rectangle
 	$("#rectFilled").click(function () {
-		selection.selectOperation(1);
+		op = creation;
+		op.selectOperation(1);
 	});
 
 	// Select an outlined rectangle
 	$("#rectBorder").click(function () {
-		selection.selectOperation(2);
+		op = creation;
+		op.selectOperation(2);
 	});
 
 	// Select a filled rectangle with border
 	$("#rectBoth").click(function () {
-		selection.selectOperation(3);
+		op = creation;
+		op.selectOperation(3);
 	});
 
 	// Select a filled circle
 	$("#circFilled").click(function () {
-		selection.selectOperation(4);
+		op = creation;
+		op.selectOperation(4);
 	});
 
 	// Select an outlined circle
 	$("#circBorder").click(function () {
-		selection.selectOperation(5);
+		op = creation;
+		op.selectOperation(5);
 	});
 
 	// Select a filled circle with border
 	$("#circBoth").click(function () {
-		selection.selectOperation(6);
+		op = creation;
+		op.selectOperation(6);
 	});
 
 	$("#penButton").click(function () {
-		console.log("penButton");
-	});
-
-	$("#saveButton").click(function () {
-		console.log("saveButton");
-	});
-
-	$("#loadButton").click(function () {
-		console.log("loadButton");
+		op = creation;
+		op.selectOperation(7);
 	});
 
 	$("#textButton").click(function () {
@@ -55,30 +58,43 @@ var events = function (canvas, selection, history) {
 		console.log("TextButton. font: ", font);
 	});
 
+	$("#moveButton").click(function () {
+		op = selection;
+		console.log("pressed move");
+	});
+
+	$("#saveButton").click(function () {
+		$(".save-menu").toggleClass("hidden");
+		console.log("saveButton");
+	});
+	
+	$("#save-submit").click(function () {
+		saveToApi(history.history, $("#username").val(), $("#drawing-name").val());
+		$(".save-menu").toggleClass("hidden");
+	});
+
+	$("#loadButton").click(function () {
+		console.log("loadButton");
+	});
+
 	$("#undoButton").click(function () {
-		console.log("undoButton");
+		history.undo(canvas, context);
 	});
 
 	$("#redoButton").click(function () {
-		console.log("redoButton");
+		history.redo(context);
 	});
 
 	$("#lineWidth").on("change", function () {
-		selection.setLineWidth($("#lineWidth").val());
-//		var lineWidth = $("#lineWidth").val();
-//		console.log("LineWidth: ", lineWidth);
+		creation.setLineWidth($("#lineWidth").val());
 	});
 
 	$("#strokeColor").on("change", function () {
-		selection.setLineColor($("#strokeColor").val());
-//		var color = $("#strokeColor").val();
-//		console.log("strokeColor", color);
+		creation.setLineColor($("#strokeColor").val());
 	});
 
 	$("#fillColor").on("change", function () {
-		selection.setFillColor($("#fillColor").val());
-//		var color = $("#fillColor").val();
-//		console.log("fillColor", color);
+		creation.setFillColor($("#fillColor").val());
 	});
 
 	$("#font").on("change", function () {
@@ -112,21 +128,39 @@ var events = function (canvas, selection, history) {
 	var mouseMoveListener = function (evt) {
 		var mousePos = getMousePos(evt);
 		
-		selection.item.mouseMove(canvas, context, mousePos);
+		if (op === creation){
+			op.item.resize(shadowCanvas, shadowContext, mousePos);
+		} else {
+			op.moveShape(mousePos, history, canvas, context);
+		}
 	};
 
-	canvas.addEventListener("mousedown", function (evt) {
-		selection.createShape();
-		selection.item.p1 = getMousePos(evt);
-		selection.item.p2 = getMousePos(evt);
+	shadowCanvas.addEventListener("mousedown", function (evt) {
+		if (op === creation) {
+			
+			op.createShape(getMousePos(evt));
+//			op.item.p1 = getMousePos(evt);
+//			op.item.p2 = getMousePos(evt);
+		} else {
+			op.selectShape(getMousePos(evt), history);
+		}
 
-		canvas.addEventListener("mousemove", mouseMoveListener, false);
+		shadowCanvas.addEventListener("mousemove",
+									  mouseMoveListener, false);
 	}, false);
 
-	canvas.addEventListener("mouseup", function (evt) {
-		canvas.removeEventListener("mousemove", mouseMoveListener, false);
-		history.addShape(selection.item);
-		history.drawHistory(canvas, context);
-		selection.createShape();
+	shadowCanvas.addEventListener("mouseup", function (evt) {
+		shadowCanvas.removeEventListener("mousemove", mouseMoveListener, false);
+		
+		if (op === creation) {
+			history.addShape(creation.item);
+			history.drawHistory(canvas, context);
+
+			shadowContext.clearRect(0, 0, shadowCanvas.width, shadowCanvas.height);
+			console.log(creation.item);
+			creation.createShape(new Point(0, 0));
+		} else {
+			selection = new Selection();
+		}
 	}, false);
 };

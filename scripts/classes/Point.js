@@ -16,5 +16,17 @@ var Point = Base.extend({
 		
 		this.x = x;
 		this.y = y;
+	},
+	
+	/**
+	Function that calculates the distance from another point in the second power
+	
+	@param {Point} that* A Point instance
+	@return {number} The distance in the second power
+	**/
+	distTo: function (that) {
+		"use strict";
+		return Math.sqrt(Math.pow((that.x - this.x), 2) +
+						 Math.pow((that.y - this.y), 2));
 	}
 });

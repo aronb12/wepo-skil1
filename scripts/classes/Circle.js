@@ -72,7 +72,7 @@ var Circle = Shape.extend({
 	/**
 	Function that acts as an event listener when the mouse is moved on the canvas
 	**/
-	mouseMove: function (canvas, context, p) {
+	resize: function (canvas, context, p) {
 		"use strict";
 		
 		this.p2 = p;
@@ -81,6 +81,17 @@ var Circle = Shape.extend({
 		context.clearRect(0, 0, canvas.width, canvas.height);
 		
 		this.draw(context);
+	},
+	
+	/**
+	Function for altering the location of the circle
+	
+	@param {number} deltaX* Movement on the x-axis
+	@param {number} deltaY* Movement on the y-axis
+	**/
+	move: function (deltaX, deltaY) {
+		this.center.x += deltaX;
+		this.center.y += deltaY;
 	},
 	
 	/**
@@ -152,5 +163,21 @@ var Circle = Shape.extend({
 		"use strict";
 		
 		this.drawFinish = this.drawSelections[index];
+	},
+	
+	/**
+	Function for determining if a given point is inside the circle
+	
+	@param {Point} p* The given point.
+	@return {boolean} True iff the point is inside the circle
+	**/
+	containsPoint: function (p) {
+		"use strict";
+		
+		if (p.distTo(this.center) > this.radius) {
+			return false;
+		}
+		console.log("true");
+		return true;
 	}
 });

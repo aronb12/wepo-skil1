@@ -19,7 +19,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="#">Paint 2</a>
+              <a class="navbar-brand" href="">Paint 2</a>
             </div>
               <ul class="nav navbar-nav navbar-right">
                 <li>
@@ -36,6 +36,21 @@
           </div><!-- /.container-fluid -->
         </nav>
 		<div class="container">
+			<div class="save-menu hidden">
+				<fieldset>
+					<legend>Save</legend>
+					<label for="name">Username</label>
+					 <br />
+					<input type="text" id="username"/>
+					 <br />
+					<label for="drawing-name">Drawing</label>
+					 <br />
+					<input type="text" id="drawing-name"/>
+					<br />
+					<input type="button" id="save-submit" value="Save" class="btn btn-default"/>
+				</fieldset>
+			</div>
+			
 			<div class="row">
 				<div class="container-main">
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -81,18 +96,20 @@
                             </button>
                         </div>
                         <div class="btn-group" role="group">
-                            <button id="penButton" type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span> Select
+                            <button id="moveButton" type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-hand-up" aria-hidden="true"></span> Move
                             </button>
                         </div>
                     </div>
-					<div class="container-canvas">
-						<canvas id="canvas" width="1000" height="450">
-							<p>Your browser does not support canvas</p>
-						</canvas>
-						<canvas id="shadowCanvas" width="1000" height="450">
-							<p>Your browser does not support canvas</p>
-						</canvas>
+					<div class="container-draw">
+						<div class="container-canvas">
+							<canvas id="shadowCanvas" width="1000" height="450">
+								<p>Your browser does not support canvas</p>
+							</canvas>
+							<canvas id="canvas" width="1000" height="450">
+								<p>Your browser does not support canvas</p>
+							</canvas>
+						</div>
                         <div class="row">
                             <div class="col-md-2">
                                 <label>Line Width</label>
@@ -163,8 +180,12 @@
 		<script	src="scripts/classes/Line.js"></script>
 		<script	src="scripts/classes/Rectangle.js"></script>
 		<script	src="scripts/classes/Circle.js"></script>
+		<script	src="scripts/classes/Pen.js"></script>
+		<script src="scripts/classes/Creation.js"></script>
 		<script src="scripts/classes/Selection.js"></script>
 		<script src="scripts/classes/History.js"></script>
+		<script src="scripts/api/save.js"></script>
+		<script src="scripts/api/getList.js"></script>
 			
 		<script src="scripts/events.js"></script>
 

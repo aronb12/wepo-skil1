@@ -1,18 +1,20 @@
 $(document).ready(function () {
 	"use strict";
 
-	var selected	= new Selection(),
-		canvas		= document.getElementById("canvas"),
-		history		= new History(),
-		domEvents	= events(canvas, selected, history);
+	var creation		= new Creation(),
+		selection		= new Selection(),
+		canvas			= document.getElementById("canvas"),
+		shadowCanvas	= document.getElementById("shadowCanvas"),
+		history			= new History(),
+		domEvents		= events(canvas, shadowCanvas, creation, selection, history);
 
-	selected.item = new Line(new Point(0, 0), new Point(0, 0),
+	selection.item = new Line(new Point(0, 0), new Point(0, 0),
 							$("#strokeColor").val(),
 							$("#lineWidth").val());
 
-	selected.lineColor	= $("#strokeColor").val();
-	selected.lineWidth	= $("#lineWidth").val();
-	selected.fillColor	= $("#fillColor").val();
-	selected.font		= $("#font").val();
-	selected.fontSize	= $("#fontSize").val();
+	selection.lineColor	= $("#strokeColor").val();
+	selection.lineWidth	= $("#lineWidth").val();
+	selection.fillColor	= $("#fillColor").val();
+	selection.font		= $("#font").val();
+	selection.fontSize	= $("#fontSize").val();
 });

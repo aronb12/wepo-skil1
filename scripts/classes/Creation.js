@@ -1,69 +1,73 @@
 /**
-Selection class for determining what object should be drawn
+Creation class for determining what object should be drawn
 on the canvas and with what values.
 **/
-
-var Selection = Base.extend({
+var Creation = Base.extend({
 	
 	/**
 	Default constructor
 	**/
 	constructor: function () {
 		"use strict";
-		
-		this.createObject = function () {};
+	
+		/**
+		The item to be drawn on the canvas
+		**/
+		this.item = {};
+		this.lineColor = "black";
+		this.lineWidth = 1;
+		this.fillColor = "black";
+		this.font = "";
+		this.fontSize = 0;
+
+		this.createShape = function (p) {};
 	},
-	
-	/**
-	The item to be drawn on the canvas
-	**/
-	item: {},
-	lineColor: "",
-	lineWidth: 0,
-	fillColor: "",
-	font: "",
-	fontSize: 0,
-	
-	opIndex: 0,
 	operations: [
-		function () {
+		function (p) {
 			"use strict";
+			
+			this.item = this.createLine(p);
 		},
-		function () {
+		function (p) {
 			"use strict";
 
-			this.item = this.createRect();
+			this.item = this.createRect(p);
 			this.item.selectDraw(0);
 		},
-		function () {
+		function (p) {
 			"use strict";
 
-			this.item = this.createRect();
+			this.item = this.createRect(p);
 			this.item.selectDraw(1);
 		},
-		function () {
+		function (p) {
 			"use strict";
 
-			this.item = this.createRect();
+			this.item = this.createRect(p);
 			this.item.selectDraw(2);
 		},
-		function () {
+		function (p) {
 			"use strict";
 
-			this.item = this.createCirc();
+			this.item = this.createCirc(p);
 			this.item.selectDraw(0);
 		},
-		function () {
+		function (p) {
 			"use strict";
 
-			this.item = this.createCirc();
+			this.item = this.createCirc(p);
 			this.item.selectDraw(1);
 		},
-		function () {
+		function (p) {
 			"use strict";
 
-			this.item = this.createCirc();
+			this.item = this.createCirc(p);
 			this.item.selectDraw(2);
+		},
+		function (p) {
+			"use strict";
+			
+			this.item = this.createPen(p);
 		}
 	],
 	setLineColor: function (color) {
@@ -107,34 +111,50 @@ var Selection = Base.extend({
 	selectOperation: function (index) {
 		"use strict";
 		
-//		this.opIndex = index;
 		this.createShape = this.operations[index];
 	},
 	
 	/**
 	Function for creating a rectangle using the class variables
+	
+	@return {Rectangle} New rectangle object
 	**/
-	createRect: function () {
+	createRect: function (p) {
 		"use strict";
 		
-		return new Rectangle(new Point(0, 0),
-								  new Point(0, 0),
-								  this.lineColor,
-								  this.lineWidth,
-								  this.fillColor);
+		return new Rectangle(p, p, this.lineColor, this.lineWidth, this.fillColor);
 	},
 	
 	/**
 	Function for creating a circle using the class variables
+	
+	@return {Circle} New circle object
 	**/
-	createCirc: function () {
+	createCirc: function (p) {
 		"use strict";
 		
-		return new Circle(new Point(0, 0),
-								  new Point(0, 0),
-								  this.lineColor,
-								  this.lineWidth,
-								  this.fillColor);
-	}
+		return new Circle(p, p, this.lineColor, this.lineWidth, this.fillColor);
+	},
 	
+	/**
+	Function for creating a line
+	
+	@return {Line} New line object
+	**/
+	createLine: function (p) {
+		"use strict";
+		
+		return new Line(p, p, this.lineColor, this.lineWidth);
+	},
+	
+	/**
+	Function for creating a pen object
+	
+	@return {object} New Pen object
+	**/
+	createPen: function (p) {
+		"use strict";
+		
+		return new Pen(p, this.lineColor, this.lineWidth);
+	}
 });

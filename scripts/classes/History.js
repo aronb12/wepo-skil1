@@ -24,12 +24,9 @@ var History = Base.extend({
 		context.clearRect(0, 0, canvas.width, canvas.height);
 		
 		var i;
-		console.log("count: " + this.count);
 		for (i = 0; i < this.count; i += 1) {
 			this.history[i].draw(context);
-			console.log(this.history[i]);
 		}
-		console.log("index: " + i);
 	},
 	
 	/**
@@ -44,7 +41,7 @@ var History = Base.extend({
 		if (this.count > 0) {
 			this.count -= 1;
 			context.clearRect(0, 0, canvas.width, canvas.height);
-			this.drawHistory(context);
+			this.drawHistory(canvas, context);
 		}
 	},
 	
@@ -76,5 +73,22 @@ var History = Base.extend({
 		
 		this.history.push(newShape);
 		this.count += 1;
+	},
+	
+	/**
+	Function for selecting a specific object in history based on point clicked on canvas
+	
+	@param {Point} p* A given point
+	@return {object} The first object in history wherein the point p lies
+	**/
+	findShape: function (p) {
+		"use strict";
+		
+		for (var i = this.count - 1; i >= 0; i -= 1) {
+			if (this.history[i].containsPoint(p)) {
+				return this.history[i];
+			}
+		}
+		return {};
 	}
 });

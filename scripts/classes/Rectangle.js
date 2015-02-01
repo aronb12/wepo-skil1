@@ -45,8 +45,12 @@ var Rectangle = Shape.extend({
 	
 	/**
 	Function that acts as an event listener when the mouse is moved on the canvas
+	
+	@param {object} canvas* The canvas to be drawn on
+	@param {object} context* The canvas context
+	@param {Point} p* The point to which the user has dragged the mouse
 	**/
-	mouseMove: function (canvas, context, p) {
+	resize: function (canvas, context, p) {
 		"use strict";
 		
 		this.p2 = p;
@@ -55,6 +59,20 @@ var Rectangle = Shape.extend({
 		context.clearRect(0, 0, canvas.width, canvas.height);
 		
 		this.draw(context);
+	},
+	
+	/**
+	Function for altering the location of the rectangle
+	
+	@param {number} deltaX* Movement on the x-axis
+	@param {number} deltaY* Movement on the y-axis
+	**/
+	move: function (deltaX, deltaY) {
+		this.p1.x += deltaX;
+		this.p1.y += deltaY;
+		
+		this.p2.x += deltaX;
+		this.p2.y += deltaY;
 	},
 	
 	/**
@@ -125,5 +143,30 @@ var Rectangle = Shape.extend({
 		"use strict";
 		
 		this.drawFinish = this.drawSelections[index];
+	},
+	
+	/**
+	Function for determining if a given point is inside the rectangle
+	
+	@param {Point} p* The given point
+	@return {bool} True iff the rectangle contains the point
+	**/
+	containsPoint: function (p) {
+		"use strict";
+		
+		if (p.x < this.p1.x && p.x < this.p2.x) {
+			return false;
+		}
+		if (p.x > this.p1.x && p.x > this.p2.x) {
+			return false;
+		}
+		if (p.y < this.p1.y && p.y < this.p2.y) {
+			return false;
+		}
+		if (p.y > this.p1.y && p.y > this.p2.y) {
+			return false;
+		}
+		console.log("true");
+		return true;
 	}
 });

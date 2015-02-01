@@ -125,3 +125,94 @@ vLineRight.draw(context);
 hLineTop.draw(context);
 hLineCenter.draw(context);
 hLineBottom.draw(context);
+
+var skinnyLine = new Line(new Point(2, 300), new Point(2, 310), "black", 1);
+
+var thickLine = new Line(new Point(10, 305), new Point(200, 305), "black", 10);
+
+skinnyLine.draw(context);
+thickLine.draw(context);
+
+var savedObjects = [
+	vLineCenter,
+	vLineLeft,
+	vLineRight
+];
+
+var jsonSaved = JSON.stringify(savedObjects);
+
+var param = {
+	"user":		"arona12",
+	"name":		"test2",
+	"content":	jsonSaved,
+	"template":	false
+};
+//
+//$.ajax({
+//	type:			"POST",
+//	contentType:	"application/json; charset=utf-8",
+//	url:			"http://whiteboard.apphb.com/Home/Save",
+//	data:			param,
+//	dataType:		"jsonp",
+//	crossDomain:	true,
+//	success:		function (data) {
+//		"use strict";
+//		console.log("SUCCESS!!");
+//		console.log(data);
+//	},
+//	error:			function (xhr, err) {
+//		"use strict";
+//		console.log("ERROR!!");
+//		console.log(xhr);
+//		console.log(err);
+//	}
+//});
+
+//$.ajax({
+//	type: "POST",
+//	contentType: "application/json; charset=utf-8",
+//	url: "http://whiteboard.apphb.com/Home/GetList",
+//	data: {"user": "arona12", "template": true},
+//	dataType: "jsonp",
+//	crossDomain: true,
+//	success: function (data) {
+//		console.log("SUCCESS!!");
+//		console.log(data);
+//	},
+//	error: function (xhr, err) {
+//		console.log("ERROR!!");
+//		console.log(xhr);
+//		console.log(err);
+//	}
+//});
+
+//$.ajax({
+//	type: "POST",
+//	contentType: "application/json; charset=utf-8",
+//	url: "http://whiteboard.apphb.com/Home/GetWhiteboard",
+//	data: {"id": 2234},
+//	dataType: "jsonp",
+//	crossDomain: true,
+//	success: function (data) {
+//		console.log("SUCCESS!!");
+//		console.log(data);
+//	},
+//	error: function (xhr, err) {
+//		console.log("ERROR!!");
+//		console.log(xhr);
+//		console.log(err);
+//	}
+//});
+
+var i = getList("arona12");
+i.done(function () {
+	console.log(i);
+});
+//console.log(i.success())
+//saveToApi([new Line(new Point(0, 0),
+//					new Point(100, 100),
+//					"black",
+//					4)],
+//		  "arona12",
+//		  "functiontest");
+
