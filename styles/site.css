@@ -19,8 +19,14 @@ canvas {
 }
 */
 label{
-    text-decoration-color: white;
+    color: white;
 }
+
+legend{
+    color: white;
+    border-bottom-color: white;
+}
+
 .toolbar{
 	background-color: blue;
 }
